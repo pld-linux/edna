@@ -1,0 +1,57 @@
+#!/bin/sh
+#
+# ices		This shell script takes care of starting and stopping
+#		edna.
+#
+# chkconfig:	345 96 24
+# description:	edna allows you to access your MP3 collection from any 
+#		networked computer. This software streams your MP3s via 
+#		HTTP to any MP3 player that supports playing off a remote 
+#		connection (e.g. Winamp, FreeAmp, Sonique, XMMS). 
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+if is_yes "${NETWORKING}"; then
+	if [ ! -f /var/lock/subsys/network ]; then
+		msg_network_down edna
+		exit 1
+	fi
+else
+	exit 0
+fi
+
+# See how we were called.
+case "$1" in
+  start)
+	# Start daemons.
+	msg_starting edna
+	export PYTHONPATH=/usr/lib/edna
+	cd /etc/edna
+	exec python /usr/bin/edna /etc/edna/edna.conf 2> /dev/null &
+	ok
+	touch /var/lock/subsys/edna
+	;;
+  stop)
+	# Stop daemons.
+	msg_stopping edna
+	killproc edna 2> /dev/null
+	rm -f /var/lock/subsys/edna
+	;;
+  restart|reload)
+	$0 stop
+	$0 start
+	;;
+  status)
+	status edna
+	;;
+  *)
+	msg_usage "$0 {start|stop|restart|reload|status}"
+	exit 1
+esac
+
+exit 0
