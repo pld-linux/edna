@@ -13,6 +13,8 @@ Source0:	http://edna.sourceforge.net/%{name}-%{version}.tar.gz
 # Source0-md5:	ec3d46b25fa582b78db7c32acf78da47
 Source1:	%{name}.init
 URL:		http://edna.sourceforge.net/
+PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
 Requires:	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
