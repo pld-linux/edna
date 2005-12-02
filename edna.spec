@@ -1,6 +1,7 @@
 #
-# TODO: 
+# TODO:
 #	- init script should be fixed
+#	- run as uid>0 !
 #
 Summary:	Edna - streaming server
 Summary(pl):	Edna - serwer strumieni
@@ -13,9 +14,12 @@ Source0:	http://edna.sourceforge.net/%{name}-%{version}.tar.gz
 # Source0-md5:	ec3d46b25fa582b78db7c32acf78da47
 Source1:	%{name}.init
 URL:		http://edna.sourceforge.net/
-PreReq:		rc-scripts
+BuildRequires:	rpm-pythonprov
+Requires:	rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 Requires:	python
+Requires:	python-modules
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,11 +43,12 @@ install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/edna
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	LIBDIR=$RPM_BUILD_ROOT%{_datadir}/edna
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/edna
 install edna.conf $RPM_BUILD_ROOT%{_sysconfdir}/edna
-ln -sf /usr/lib/edna/templates $RPM_BUILD_ROOT%{_sysconfdir}/edna/templates
+ln -sf %{_datadir}/edna/templates $RPM_BUILD_ROOT%{_sysconfdir}/edna/templates
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -70,8 +75,6 @@ fi
 %attr(755,root,root) %{_bindir}/edna
 %attr(754,root,root) /etc/rc.d/init.d/edna
 %dir %{_sysconfdir}/edna
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/edna/edna.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/edna/edna.conf
 %{_sysconfdir}/edna/templates
-%dir %{_libdir}/%{name}
-%attr(755,root,root) %{_libdir}/%{name}/*.py
-%{_libdir}/%{name}/templates
+%{_datadir}/%{name}
