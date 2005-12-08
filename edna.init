@@ -4,10 +4,10 @@
 #		edna.
 #
 # chkconfig:	345 96 24
-# description:	edna allows you to access your MP3 collection from any 
-#		networked computer. This software streams your MP3s via 
-#		HTTP to any MP3 player that supports playing off a remote 
-#		connection (e.g. Winamp, FreeAmp, Sonique, XMMS). 
+# description:	edna allows you to access your MP3 collection from any
+#		networked computer. This software streams your MP3s via
+#		HTTP to any MP3 player that supports playing off a remote
+#		connection (e.g. Winamp, FreeAmp, Sonique, XMMS).
 
 # Source function library.
 . /etc/rc.d/init.d/functions
