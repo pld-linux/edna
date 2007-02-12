@@ -4,7 +4,7 @@
 #	- run as uid>0 !
 #
 Summary:	Edna - streaming server
-Summary(pl.UTF-8):   Edna - serwer strumieni
+Summary(pl.UTF-8):	Edna - serwer strumieni
 Name:		edna
 Version:	0.5
 Release:	1
