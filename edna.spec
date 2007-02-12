@@ -4,7 +4,7 @@
 #	- run as uid>0 !
 #
 Summary:	Edna - streaming server
-Summary(pl):	Edna - serwer strumieni
+Summary(pl.UTF-8):   Edna - serwer strumieni
 Name:		edna
 Version:	0.5
 Release:	1
@@ -28,11 +28,11 @@ computer. This software streams your MP3s via HTTP to any MP3 player
 that supports playing off a remote connection (e.g. Winamp, FreeAmp,
 Sonique, XMMS). Edna supports Ogg files either.
 
-%description -l pl
-Edna umo¿liwia dostêp do kolekcji MP3 z dowolnego komputera maj±cego
-dostêp do sieci. Ten program wysy³a strumieñ MP3 po HTTP do dowolnego
-odtwarzacza MP3 obs³uguj±cego odtwarzanie przez po³±czenie sieciowe
-(jak Winamp, FreeAmp, Sonique, XMMS). Edna obs³uguje tak¿e pliki Ogg.
+%description -l pl.UTF-8
+Edna umoÅ¼liwia dostÄ™p do kolekcji MP3 z dowolnego komputera majÄ…cego
+dostÄ™p do sieci. Ten program wysyÅ‚a strumieÅ„ MP3 po HTTP do dowolnego
+odtwarzacza MP3 obsÅ‚ugujÄ…cego odtwarzanie przez poÅ‚Ä…czenie sieciowe
+(jak Winamp, FreeAmp, Sonique, XMMS). Edna obsÅ‚uguje takÅ¼e pliki Ogg.
 
 %prep
 %setup -q
